@@ -4,9 +4,23 @@ export async function GET(request: Request) {
   const { searchParams } = new URL(request.url);
   const page = Number(searchParams.get("page") || 1);
   const tag = Number(searchParams.get("tag") || 0);
+  const location = Number(searchParams.get("location") || 0);
 
-  const filteredPosts =
-    tag !== 0 ? posts.filter((post) => post.tag === tag) : posts;
+  let filteredPosts = posts;
+
+  if (tag !== 0 && location !== 0) {
+    filteredPosts = posts.filter(
+      (post) => post.location === location || post.tag === tag
+    );
+  }
+
+  if (tag === 0 && location !== 0) {
+    filteredPosts = posts.filter((post) => post.location === location);
+  }
+
+  if (tag !== 0 && location === 0) {
+    filteredPosts = posts.filter((post) => post.tag === tag);
+  }
 
   const pageSize = 3;
   const start = (page - 1) * pageSize;
