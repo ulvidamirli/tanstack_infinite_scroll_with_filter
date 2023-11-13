@@ -109,7 +109,11 @@ export default function ({ ssrData }: { ssrData: any }) {
         <ul>
           {items.map((item) => (
             <li key={item.id}>
-              <a href={`/posts/${item.id}`}>{item.title}</a>
+              <a href={`/posts/${item.id}`} className="flex items-center space-x-2 p-3 my-1 bg-gray-900 hover:bg-gray-800 duration-200 rounded-lg">
+                <span>{item.title}</span>
+                <span className="px-3 py-0.5 rounded-full bg-gray-600">Location {item.location}</span>
+                <span className="px-3 py-0.5 rounded-full bg-gray-600">Tag {item.tag}</span>
+              </a>
             </li>
           ))}
         </ul>
