@@ -5,6 +5,6 @@
 
 
 **Installed libraries:**
-1. `npm i @tanstack/react-query`
-2. `npm i -D @tanstack/eslint-plugin-query`
-3. `npm i -D @tanstack/react-query-devtools`
+1. `@tanstack/react-query`
+2. `@tanstack/eslint-plugin-query`
+3. `@tanstack/react-query-devtools`
