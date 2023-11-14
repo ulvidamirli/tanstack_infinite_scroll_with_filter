@@ -1,7 +1,7 @@
 import MainSection from "@/app/posts/MainSection";
 import { get } from "@/lib/httpClient";
 
-export default async function ({ searchParams }: { searchParams: any }) {
+const Page = async ({ searchParams }: { searchParams: any }) => {
   const urlParams = {
     page: searchParams.page || 1,
     tag: searchParams.tag || "",
@@ -26,4 +26,6 @@ export default async function ({ searchParams }: { searchParams: any }) {
       <MainSection ssrData={ssrData} />
     </div>
   );
-}
+};
+
+export default Page;
