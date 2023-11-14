@@ -20,7 +20,7 @@ const locations = [
   { id: 5, name: "location5" },
 ];
 
-export default function ({ ssrData }: { ssrData: any }) {
+const MainSection = ({ ssrData }: { ssrData: any }) => {
   const [urlParams, setUrlParams] = useState(ssrData.urlParams);
 
   const handleTagChange = (tagId: number) => {
@@ -49,7 +49,7 @@ export default function ({ ssrData }: { ssrData: any }) {
       return lastPage.meta.nextPage ? lastPage.meta.nextPage : undefined;
     },
     initialPageParam: ssrData.postsData.pageParams,
-    initialData: ssrData.postsData,
+    // initialData: ssrData.postsData, // pass it conditionally when you want to use SSR
     // staleTime: Infinity,
     // gcTime: 0, // disable garbage collection
   });
@@ -109,10 +109,17 @@ export default function ({ ssrData }: { ssrData: any }) {
         <ul>
           {items.map((item) => (
             <li key={item.id}>
-              <a href={`/posts/${item.id}`} className="flex items-center space-x-2 p-3 my-1 bg-gray-900 hover:bg-gray-800 duration-200 rounded-lg">
+              <a
+                href={`/posts/${item.id}`}
+                className="flex items-center space-x-2 p-3 my-1 bg-gray-900 hover:bg-gray-800 duration-200 rounded-lg"
+              >
                 <span>{item.title}</span>
-                <span className="px-3 py-0.5 rounded-full bg-gray-600">Location {item.location}</span>
-                <span className="px-3 py-0.5 rounded-full bg-gray-600">Tag {item.tag}</span>
+                <span className="px-3 py-0.5 rounded-full bg-gray-600">
+                  Location {item.location}
+                </span>
+                <span className="px-3 py-0.5 rounded-full bg-gray-600">
+                  Tag {item.tag}
+                </span>
               </a>
             </li>
           ))}
@@ -133,4 +140,6 @@ export default function ({ ssrData }: { ssrData: any }) {
       )}
     </div>
   );
-}
+};
+
+export default MainSection;
